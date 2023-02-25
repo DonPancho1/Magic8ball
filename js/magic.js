@@ -19,4 +19,34 @@ const answerlist = [
    "magic8ball_18.png",
    "magic8ball_19.png",
    "magic8ball_20.png",
-]
+];
+
+//define button
+const questionsubmit = document.createElement ("button");
+const questionform = document.createElement ("form");
+const questioninput = document.createElement ("input");
+questionform.appendChild (questioninput);
+questionform.appendChild (questionsubmit);
+questionsubmit.innerText = "ask";
+
+//question display
+const currentquestion = document.createElement ("p");
+
+//define image
+const answerimage = document.createElement ("img");
+const randomimage =()=>{
+    return 'img/'+answerlist[Math.floor(Math.random()*answerlist.length)]
+};
+answerimage.src = 'img/magic8ball_start.png';
+
+//append to page
+document.body.appendChild (questionform);
+document.body.appendChild (currentquestion);
+document.body.appendChild (answerimage);
+
+questionform.addEventListener ('submit',function (event) {
+    event.preventDefault ();
+    currentquestion.innerText = questioninput.value;
+    questioninput.value = null;
+    answerimage.src = randomimage();   
+})
